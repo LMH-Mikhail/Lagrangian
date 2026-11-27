@@ -1,0 +1,22 @@
+[Unit]
+Description=Lagrangian Always-on Engineering Workbench Server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# Replace with a dedicated non-root system user on your Linux host
+User=lagrangian
+Group=lagrangian
+Environment=LAGRANGIAN_HOME=/var/lib/lagrangian
+Environment=LAGRANGIAN_SECRET_BACKEND=file
+# Optional: supply LAGRANGIAN_MASTER_KEY via an EnvironmentFile with 0600 permissions
+# EnvironmentFile=-/etc/lagrangian/env
+ExecStart=/usr/local/bin/lagrangian-server --home /var/lib/lagrangian
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

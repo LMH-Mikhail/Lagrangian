@@ -1,0 +1,72 @@
+# Lagrangian Configuration Template
+# Zero personal data is bundled in the repository.
+# Copy this file to your config directory or run the Setup Wizard on first launch.
+
+version: 1
+
+server:
+  # Deployment mode: "standalone" (auto-binds 127.0.0.1) or "server" (auto-binds 0.0.0.0)
+  mode: standalone
+  port: 19000
+  auth_enabled: false
+  # Reference key in the platform secret store (never store raw tokens here)
+  api_token_ref: ""
+
+storage:
+  # Leave empty to use platform standard data directory (or LAGRANGIAN_HOME)
+  data_dir: ""
+  # Leave empty to default to <data_dir>/lagrangian.sqlite
+  db_path: ""
+  # Leave empty to default to <data_dir>/attachments
+  attachments_dir: ""
+
+workflow:
+  # Fully customizable task status pipeline
+  task_statuses:
+    - key: backlog
+      label: 待规划
+      category: todo
+      color: "#8b949e"
+    - key: ready
+      label: 就绪
+      category: todo
+      color: "#58a6ff"
+    - key: in_progress
+      label: 进行中
+      category: active
+      color: "#3fb950"
+    - key: blocked
+      label: 阻塞中
+      category: blocked
+      color: "#f85149"
+    - key: in_review
+      label: 待验收
+      category: active
+      color: "#d29922"
+    - key: done
+      label: 已完成
+      category: done
+      color: "#a371f7"
+    - key: canceled
+      label: 已取消
+      category: done
+      color: "#6e7681"
+
+git:
+  # Optional author name/email filters used when scanning commits
+  author_aliases: []
+  # Enable one-to-one patch-id rebase reconciliation
+  auto_reconcile_rebase: true
+
+components:
+  # Pluggable component slots (activated across Phases 2-4 via standard Go interfaces)
+  code_hosts: []
+  issue_trackers: []
+  bots: []
+  agent_sources: []
+  llm_providers: []
+  knowledge_bases: []
+  mcp:
+    enabled: false
+    transport: http_sse
+    allow_write: false

@@ -1,0 +1,27 @@
+# Build outputs
+/bin/
+/dist/
+/internal/transport/httpapi/webdist/dist/*
+!/internal/transport/httpapi/webdist/dist/.gitkeep
+
+# Runtime & user data (never commit personal data)
+config.yaml
+*.local.yaml
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+.lagrangian/
+data/
+attachments/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# OS & IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
